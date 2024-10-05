@@ -1,7 +1,7 @@
 const products = [
-    { id: 1, name: 'محاكي الحرب', price: 119.99, description: 'محاكي لكيفيه الصد والهجوم.', subscription: true },
-    { id: 2, name: 'محاكي تذاكر+صناديق', price: 99.99, description: 'محاكي عجله الثروه الخياليه ومحاكي الصناديق الاشتراك مدي الحياه.', subscription: false },
-    { id: 3, name: 'قريبا', price: 00.00, description: 'قريبا ميزه جديده.', subscription: false },
+    { id: 1, name: 'محاكي الحرب', price: 110.00, description: 'محاكي لكيفيه الصد والهجوم.', subscription: true },
+    { id: 2, name: 'محاكي تذاكر+صناديق', price: 50.00, description: 'محاكي عجله الثروه الخياليه ومحاكي الصناديق الاشتراك مدي الحياه.', subscription: false },
+    { id: 3, name: 'قريبا', price: 0, description: 'قريبا ميزه جديده.', subscription: false },
 ];
 
 let cart = [];
@@ -157,22 +157,16 @@ document.getElementById('send-chat').addEventListener('click', () => {
         // ردود الشات بوت
         if (message.toLowerCase() === 'help') {
             chatOutput.innerHTML += `<p> الشات بوت: يمكنك الاستعلام عن (المنتجات) (طرق الدفع) او (سياسه الاسترجاع) فقط اكتب اي من هذه الاوامر.</p>`;
-            else         if (message.toLowerCase() === 'سياسه الاسترجاع') {
-                chatOutput.innerHTML += `<p>الشات بوت: سياسه الاسترجاع تمم من الواتس لكن سياسه الاسترجاع مدتها 24 ساعه من تاريخ الشراء ويجب عليك دفع ثمن التحويل ولكي ترجع مشترياتك يجب ان تأتي بالفاتوره صحيحه.</p>`;
-
-                            else         if (message.toLowerCase() === 'المنتجات') {
-                chatOutput.innerHTML += `<p>الشات بوت : يتم العمل علي منتجات جديده انتظروناا . علما تستطيع استخدام المنتج في اي وقت .</p>`;
- 
-
-                else         if (message.toLowerCase() === 'وطرق الدفع') {
-                    chatOutput.innerHTML += `<p>الشات بوت : طرق الدفع حاليا هي فودافون كاش او اورانج كاش سيتم اضافه  طرق اخري مستقبلا  .</p>`;
-    
-
+        } else if (message.toLowerCase() === 'سياسه الاسترجاع') {
+            chatOutput.innerHTML += `<p>الشات بوت: سياسه الاسترجاع تمت من الواتس، لكن سياسه الاسترجاع مدتها 24 ساعه من تاريخ الشراء ويجب عليك دفع ثمن التحويل، ولكي ترجع مشترياتك يجب ان تأتي بالفاتوره صحيحه.</p>`;
+        } else if (message.toLowerCase() === 'المنتجات') {
+            chatOutput.innerHTML += `<p>الشات بوت: يتم العمل على منتجات جديدة، انتظرونا. علمًا أنه يمكنك استخدام المنتج في أي وقت.</p>`;
+        } else if (message.toLowerCase() === 'وطرق الدفع') {
+            chatOutput.innerHTML += `<p>الشات بوت: طرق الدفع حاليًا هي فودافون كاش أو أورانج كاش، سيتم إضافة طرق أخرى مستقبلاً.</p>`;
         } else {
             chatOutput.innerHTML += `<p>الشات بوت: عذرًا، لم أفهم. اكتب "help" لمساعدتك.</p>`;
         }
-        
-        // التمرير لأسفل تلقائيًا
+                // التمرير لأسفل تلقائيًا
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 });

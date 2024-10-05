@@ -1,7 +1,7 @@
 const products = [
-    { id: 1, name: 'محاكي الحرب', price: 99.99, description: 'محاكي لكيفيه الصد والهجوم.', subscription: true },
-    { id: 2, name: 'محاكي تذاكر+صناديق', price: 50, description: 'محاكي عجله الثروه الخياليه ومحاكي الصناديق الاشتراك مدي الحياه.', subscription: false },
-    { id: 3, name: 'قريبا', price: 0, description: 'قريبا ميزه جديده.', subscription: false },
+    { id: 1, name: 'محاكي الحرب', price: 119.99, description: 'محاكي لكيفيه الصد والهجوم.', subscription: true },
+    { id: 2, name: 'محاكي تذاكر+صناديق', price: 99.99, description: 'محاكي عجله الثروه الخياليه ومحاكي الصناديق الاشتراك مدي الحياه.', subscription: false },
+    { id: 3, name: 'قريبا', price: 00.00, description: 'قريبا ميزه جديده.', subscription: false },
 ];
 
 let cart = [];

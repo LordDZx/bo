@@ -1,0 +1,136 @@
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* تأثير الانتقال */
+}
+
+.dark-mode {
+    background-color: #333; /* خلفية داكنة */
+    color: white; /* نص أبيض */
+}
+
+/* تحسين تصميم الشات بوت */
+.chatbot {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px; /* عرض أكبر قليلاً */
+    border: none; /* إزالة الحدود */
+    border-radius: 10px;
+    background: #fff; /* خلفية بيضاء */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: none; /* نبدأ بإخفاء الشات بوت */
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+/* رأس الشات بوت */
+.chat-header {
+    background: #007bff; /* لون مميز */
+    color: white;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold; /* جعل النص عريض */
+}
+
+/* جسم الشات بوت */
+.chat-body {
+    padding: 10px;
+    height: 200px; /* ارتفاع أكبر */
+    overflow-y: auto;
+    background-color: white; /* خلفية بيضاء للوضع العادي */
+    color: black; /* نص أسود للوضع العادي */
+    border-radius: 0 0 10px 10px; /* زوايا مستديرة فقط للأسفل */
+}
+
+/* نصوص الشات بوت في الوضع الليلي */
+.dark-mode .chat-body {
+    background-color: #444; /* خلفية داكنة للوضع الليلي */
+    color: white; /* نص أبيض للوضع الليلي */
+}
+
+/* تحسين عرض الرسائل */
+.chat-body p {
+    margin: 5px 0; /* إضافة مساحة بين الرسائل */
+    padding: 10px; /* إضافة مسافة داخلية */
+    border-radius: 15px; /* زوايا مستديرة للرسائل */
+}
+
+/* تخصيص الرسائل الخاصة بالمستخدم والشات بوت */
+.chat-body p.user {
+    background-color: #007bff; /* لون مختلف للرسائل الخاصة بالمستخدم */
+    color: white;
+    align-self: flex-end; /* للرسائل الخاصة بالمستخدم لتكون على اليمين */
+}
+
+.chat-body p.bot {
+    background-color: #eee; /* لون مختلف للرسائل الخاصة بالشات بوت */
+    color: black;
+    align-self: flex-start; /* للرسائل الخاصة بالشات بوت لتكون على اليسار */
+}
+
+/* نصوص الشات بوت في الوضع الليلي */
+.dark-mode .chat-body p.bot {
+    background-color: #555; /* لون أغمق للرسائل الخاصة بالشات بوت في الوضع الليلي */
+}
+
+.dark-mode .chat-body p.user {
+    background-color: #0056b3; /* لون أغمق للرسائل الخاصة بالمستخدم في الوضع الليلي */
+}
+
+/* زر الإرسال */
+#send-chat {
+    padding: 10px;
+    background-color: #007bff; /* لون الزر */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0; /* إضافة مساحة فوق الزر */
+}
+
+/* تغيير لون الزر عند التمرير عليه */
+#send-chat:hover {
+    background-color: #0056b3; /* لون أغمق عند التمرير */
+}
+
+/* عرض الأيقونة بشكل جيد */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 60px; /* حجم أكبر */
+    height: 60px; /* حجم أكبر */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s; /* تأثير الانتقال */
+}
+
+/* تغيير لون الأيقونة عند التمرير عليها */
+.chat-icon:hover {
+    background-color: #0056b3; /* لون أغمق عند التمرير */
+}
+
+/* card-body في الوضع العادي */
+.card-body {
+    color: black; /* نص أسود للوضع العادي */
+}
+
+/* card-body في الوضع الليلي */
+.dark-mode .card-body {
+    color: white; /* نص أبيض للوضع الليلي */
+    background-color: #444; /* خلفية داكنة للبطاقات */
+}
+.modal-content{
+    color: black;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة الشراء</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* إضافة CSS للقائمة المنبثقة */
+        #contact-options {
+            display: none;
+            margin-top: 10px;
+            opacity: 0; /* جعل القائمة مخفية */
+            transition: opacity 0.5s ease; /* تأثير التلاشي */
+        }
+        #contact-options.show {
+            display: block;
+            opacity: 1; /* إظهار القائمة */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>بيع خصائص لعبة Goodgame Empire</h1>
+        <div class="row" id="product-list"></div>
+        <button class="btn btn-success" id="cart-btn">عرض سلة الشراء (<span id="cart-count">0</span>)</button>
+        <button class="btn btn-dark" id="toggle-theme">🌞 <span id="theme-text">الوضع الليلي</span></button>
+        
+        <!-- زر خيارات التواصل -->
+        <button class="btn btn-info" id="contact-options-btn">خيارات التواصل</button>
+        
+        <!-- خيارات التواصل المخفية -->
+        <div id="contact-options">
+            <button class="btn btn-primary" id="facebook-contact">تواصل معنا عبر فيسبوك</button>
+            <button class="btn btn-success" id="whatsapp-contact">تواصل عبر واتساب</button>
+            <button class="btn btn-danger" id="gmail-contact">تواصل عبر جيميل</button>
+            <button class="btn btn-warning" id="alternative-gmail-contact">جيميل بديل</button>
+        </div>
+    </div>
+
+    <!-- نافذة سلة الشراء -->
+    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">سلة الشراء</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="customer-name">اسم العميل:</label>
+                    <input type="text" id="customer-name" class="form-control" placeholder="اكتب اسمك هنا" />
+                    <div id="invoice"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" id="checkout-btn">إتمام عملية الشراء</button>
+                    <button type="button" class="btn btn-info" id="download-btn">تحميل الفاتورة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شات بوت -->
+    <div class="chat-icon" id="chat-icon">💬</div>
+    <div id="chatbot" class="chatbot">
+        <div class="chat-header">
+            <h5>مرحباً بك في موقعنا!</h5>
+            <button id="close-chat" class="close-chat">&times;</button>
+        </div>
+        <div class="chat-body">
+            <p id="chat-output">للاستعلام عن الأوامر اكتب "help".</p>
+        </div>
+        <input type="text" id="chat-input" placeholder="اكتب هنا..." />
+        <button id="send-chat">إرسال</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -39,29 +39,37 @@
         </div>
     </div>
 
-    <!-- نافذة سلة الشراء -->
-    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">سلة الشراء</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="customer-name">اسم العميل:</label>
-                    <input type="text" id="customer-name" class="form-control" placeholder="اكتب اسمك هنا" />
-                    <div id="invoice"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                    <button type="button" class="btn btn-primary" id="checkout-btn">إتمام عملية الشراء</button>
-                    <button type="button" class="btn btn-info" id="download-btn">تحميل الفاتورة</button>
-                </div>
+<!-- نافذة سلة الشراء -->
+<div class="modal fade" id="cart-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">سلة الشراء</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="customer-name">اسم العميل:</label>
+                <input type="text" id="customer-name" class="form-control" placeholder="اكتب اسمك هنا" />
+                
+                <!-- إضافة خيارات الدفع -->
+                <label for="payment-method">اختر طريقة الدفع:</label>
+                <select id="payment-method" class="form-control">
+                    <option value="vodafone">فودافون كاش</option>
+                    <option value="orange">أورنج كاش</option>
+                </select>
+                
+                <div id="invoice"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                <button type="button" class="btn btn-primary" id="checkout-btn">إتمام عملية الشراء</button>
+                <button type="button" class="btn btn-info" id="download-btn">تحميل الفاتورة</button>
             </div>
         </div>
     </div>
+</div>
 
     <!-- شات بوت -->
     <div class="chat-icon" id="chat-icon">💬</div>

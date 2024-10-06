@@ -7,6 +7,7 @@ const products = [
 let cart = [];
 let invoiceNumber = Math.floor(Math.random() * 100000); // رقم فاتورة عشوائي
 
+// عرض المنتجات
 function displayProducts() {
     const productList = document.getElementById('product-list');
     products.forEach(product => {
@@ -30,6 +31,7 @@ function displayProducts() {
     });
 }
 
+// إضافة منتج إلى السلة
 function addToCart(productId) {
     const quantityInput = document.getElementById(`quantity-${productId}`);
     const quantity = parseInt(quantityInput.value);
@@ -48,6 +50,7 @@ function addToCart(productId) {
     alert(`تم إضافة ${quantity} من ${product.name} إلى السلة!`);
 }
 
+// عرض تفاصيل الفاتورة
 function displayInvoice() {
     const invoice = document.getElementById('invoice');
     invoice.innerHTML = '';
@@ -65,21 +68,33 @@ function displayInvoice() {
     });
 
     const customerName = document.getElementById('customer-name').value;
+    const paymentMethod = document.getElementById('payment-method').value; // الحصول على طريقة الدفع
+
+    // تحقق من وجود قيمة لطريقة الدفع
+    if (!paymentMethod) {
+        invoice.innerHTML += `<strong>طريقة الدفع: غير محددة</strong><br>`;
+    } else {
+        invoice.innerHTML += `<strong>طريقة الدفع: ${paymentMethod === 'vodafone' ? 'فودافون كاش' : 'أورنج كاش'}</strong><br>`; // إضافة طريقة الدفع
+    }
+
     invoice.innerHTML += `<strong>رقم الفاتورة: ${invoiceNumber}</strong><br>`;
     invoice.innerHTML += `<strong>اسم العميل: ${customerName}</strong><br>`;
     invoice.innerHTML += `<strong>المجموع: ${total} جنيه مصري</strong>`;
 }
 
+// عرض سلة الشراء عند الضغط على زر "سلة الشراء"
 document.getElementById('cart-btn').addEventListener('click', () => {
     const cartModal = new bootstrap.Modal(document.getElementById('cart-modal'));
     displayInvoice();
     cartModal.show();
 });
 
+// إتمام عملية الشراء
 document.getElementById('checkout-btn').addEventListener('click', () => {
     const customerName = document.getElementById('customer-name').value;
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const invoiceDetails = generateInvoiceDetails(customerName, total);
+    const paymentMethod = document.getElementById('payment-method').value; // الحصول على طريقة الدفع
+    const invoiceDetails = generateInvoiceDetails(customerName, total, paymentMethod); // تمرير طريقة الدفع
 
     // إرسال تفاصيل الفاتورة عبر واتساب
     const whatsappNumber = '+201098662418';
@@ -91,24 +106,26 @@ document.getElementById('checkout-btn').addEventListener('click', () => {
 });
 
 // دالة لإنشاء تفاصيل الفاتورة
-function generateInvoiceDetails(customerName, total) {
-    return `فاتورة رقم: ${invoiceNumber}\nاسم العميل: ${customerName}\n\n` + cart.map(item => 
-        `${item.name} - ${item.quantity} × ${item.price} = ${item.price * item.quantity} جنيه مصري`
-    ).join('\n') + `\n\nالمجموع: ${total} جنيه مصري`;
+function generateInvoiceDetails(customerName, total, paymentMethod) {
+    return `فاتورة رقم: ${invoiceNumber}\nاسم العميل: ${customerName}\nطريقة الدفع: ${paymentMethod === 'vodafone' ? 'فودافون كاش' : 'أورنج كاش'}\n\n` + 
+        cart.map(item => 
+            `${item.name} - ${item.quantity} × ${item.price} = ${item.price * item.quantity} جنيه مصري`
+        ).join('\n') + `\n\nالمجموع: ${total} جنيه مصري`;
 }
 
-// دالة لحفظ الفاتورة
+// دالة لحفظ الفاتورة في التخزين المحلي
 function saveInvoice(invoiceDetails) {
     const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
     invoices.push(invoiceDetails);
     localStorage.setItem('invoices', JSON.stringify(invoices));
 }
 
-// دالة لتحميل الفاتورة
+// تحميل الفاتورة
 document.getElementById('download-btn').addEventListener('click', () => {
     const customerName = document.getElementById('customer-name').value;
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const invoiceDetails = generateInvoiceDetails(customerName, total);
+    const paymentMethod = document.getElementById('payment-method').value; // الحصول على طريقة الدفع
+    const invoiceDetails = generateInvoiceDetails(customerName, total, paymentMethod); // تمرير طريقة الدفع
 
     const blob = new Blob([invoiceDetails], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
@@ -166,7 +183,8 @@ document.getElementById('send-chat').addEventListener('click', () => {
         } else {
             chatOutput.innerHTML += `<p>الشات بوت: عذرًا، لم أفهم. اكتب "help" لمساعدتك.</p>`;
         }
-                // التمرير لأسفل تلقائيًا
+
+        // التمرير لأسفل تلقائيًا
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 });
@@ -177,26 +195,26 @@ document.getElementById('contact-options-btn').addEventListener('click', () => {
     contactOptions.classList.toggle('show'); // إضافة أو إزالة الفئة 'show' لتفعيل تأثير التلاشي
 });
 
-// تواصل عبر فيسبوك
+// التواصل عبر فيسبوك
 document.getElementById('facebook-contact').addEventListener('click', () => {
     const facebookUrl = 'https://www.facebook.com/profile.php?id=61558933496823';
     window.open(facebookUrl, '_blank');
 });
 
-// تواصل عبر واتساب
+// التواصل عبر واتساب
 document.getElementById('whatsapp-contact').addEventListener('click', () => {
     const whatsappNumber = '+201098662418';
     const message = encodeURIComponent('مرحبًا! أريد الاستفسار عن الخصائص.');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`);
 });
 
-// تواصل عبر جيميل
+// التواصل عبر جيميل
 document.getElementById('gmail-contact').addEventListener('click', () => {
     const gmailUrl = 'mailto:sinperrr3ddd@gmail.com?subject=استفسار&body=مرحبًا! أريد الاستفسار عن الخصائص.';
     window.open(gmailUrl);
 });
 
-// تواصل عبر جيميل بديل
+// التواصل عبر جيميل بديل
 document.getElementById('alternative-gmail-contact').addEventListener('click', () => {
     const alternativeGmailUrl = 'mailto:empirewiki200@gmail.com?subject=استفسار&body=مرحبًا! أريد الاستفسار عن الخصائص.';
     window.open(alternativeGmailUrl);
